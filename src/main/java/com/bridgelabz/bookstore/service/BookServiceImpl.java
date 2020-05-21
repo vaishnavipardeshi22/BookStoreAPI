@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookServiceImpl implements IBookService{
+public class BookServiceImpl implements IBookService {
 
     @Autowired
     IBookRepository bookRepository;
@@ -17,4 +17,10 @@ public class BookServiceImpl implements IBookService{
     public List<Book> getBookList() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public List<Book> getBookByAuthorName(String authorName) {
+        return null;
+    }
+
 }
