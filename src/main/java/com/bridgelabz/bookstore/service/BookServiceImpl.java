@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstore.service;
 
+import com.bridgelabz.bookstore.exception.BookStoreException;
 import com.bridgelabz.bookstore.model.Book;
 import com.bridgelabz.bookstore.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 public class BookServiceImpl implements IBookService {
 
     @Autowired
-    IBookRepository bookRepository;
+    public IBookRepository bookRepository;
 
     @Override
     public List<Book> getBookList() {
@@ -19,13 +20,18 @@ public class BookServiceImpl implements IBookService {
     }
 
     @Override
-    public List<Book> searchByTitle(String title) {
-        return bookRepository.findByTitle(title);
+    public List<Book> searchByTitle(String title) throws BookStoreException {
+        List<Book> bookListByTitle = bookRepository.findByTitle(title);
+        if (bookListByTitle.isEmpty())
+            throw new BookStoreException(BookStoreException.ExceptionType.BOOK_IS_NOT_AVAILABLE, "BOOK_IS_NOT_AVAILABLE");
+        return bookListByTitle;
     }
 
     @Override
-    public List<Book> searchByAuthor(String author) {
+    public List<Book> searchByAuthor(String author) throws BookStoreException {
+        List<Book> bookListOfAuthor = bookRepository.findByAuthor(author);
+        if (bookListOfAuthor.isEmpty())
+            throw new BookStoreException(BookStoreException.ExceptionType.BOOK_IS_NOT_AVAILABLE, "BOOK_IS_NOT_AVAILABLE");
         return bookRepository.findByAuthor(author);
     }
-
 }
