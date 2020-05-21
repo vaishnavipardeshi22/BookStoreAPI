@@ -1,7 +1,7 @@
 package com.bridgelabz.bookstore.service;
 
 import com.bridgelabz.bookstore.model.Book;
-import com.bridgelabz.bookstore.repository.BookRepository;
+import com.bridgelabz.bookstore.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class BookServiceImpl implements IBookService{
 
     @Autowired
-    BookRepository bookRepository;
+    IBookRepository bookRepository;
 
     @Override
     public List<Book> getBookList() {
