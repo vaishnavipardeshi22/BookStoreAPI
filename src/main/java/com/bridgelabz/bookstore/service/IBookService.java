@@ -7,5 +7,9 @@ import java.util.List;
 public interface IBookService {
     List<Book> getBookList();
 
-    List<Book> getBookByAuthorName(String authorName);
+
+    List<Book> searchByTitle(String title);
+
+    List<Book> searchByAuthor(String author);
+
 }
