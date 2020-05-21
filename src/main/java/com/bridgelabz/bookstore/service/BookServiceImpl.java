@@ -17,4 +17,14 @@ public class BookServiceImpl implements IBookService{
     public List<Book> getBookList() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public List<Book> searchByTitle(String title) {
+        return bookRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<Book> searchByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
+    }
 }

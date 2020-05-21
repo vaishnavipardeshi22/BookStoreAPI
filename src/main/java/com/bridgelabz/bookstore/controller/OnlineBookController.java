@@ -4,6 +4,7 @@ import com.bridgelabz.bookstore.model.Book;
 import com.bridgelabz.bookstore.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,15 @@ public class OnlineBookController {
     @GetMapping("/showBooks")
     public List<Book> getBooks() {
         return bookService.getBookList();
+    }
+
+    @GetMapping("/searchByBookName/{title}")
+    public List<Book> searchByBookName(@PathVariable String title) {
+        return bookService.searchByTitle(title);
+    }
+
+    @GetMapping("/searchByAuthorName/{author}")
+    public List<Book> searchByAuthorName(@PathVariable String author) {
+        return bookService.searchByAuthor(author);
     }
 }
