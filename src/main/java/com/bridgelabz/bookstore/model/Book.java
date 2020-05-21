@@ -2,32 +2,34 @@ package com.bridgelabz.bookstore.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//import javax.persistence.Table;
+
 
 @Entity
 public class Book {
 
     @Id
-    private Long id;
+    private int id;
     private String author;
     private String title;
     private String image;
-    private Long quantity;
-    private Double price;
+    private int quantity;
+    private double price;
     private String description;
+//
+//    public Book() {
+//    }
+//
+//    public Book(int id, String author, String title, String image, double price, String description) {
+//        this.id = id;
+//        this.author = author;
+//        this.title = title;
+//        this.image = image;
+//        this.price = price;
+//        this.description = description;
+//    }
 
-    public Book() {
-    }
-
-    public Book(Long id, String author, String title, String image, Double price, String description) {
-        this.id = id;
-        this.author = author;
-        this.title = title;
-        this.image = image;
-        this.price = price;
-        this.description = description;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -43,11 +45,11 @@ public class Book {
         return image;
     }
 
-    public Long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -59,11 +61,11 @@ public class Book {
         this.image = image;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
