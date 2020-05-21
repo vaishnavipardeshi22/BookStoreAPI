@@ -2,8 +2,6 @@ package com.bridgelabz.bookstore.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-//import javax.persistence.Table;
-
 
 @Entity
 public class Book {
@@ -16,18 +14,6 @@ public class Book {
     private int quantity;
     private double price;
     private String description;
-//
-//    public Book() {
-//    }
-//
-//    public Book(int id, String author, String title, String image, double price, String description) {
-//        this.id = id;
-//        this.author = author;
-//        this.title = title;
-//        this.image = image;
-//        this.price = price;
-//        this.description = description;
-//    }
 
     public int getId() {
         return id;
