@@ -26,20 +26,23 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public List<Cart> getListOfBooksInCart(){
+    public List<Cart> getListOfBooksInCart() {
         return cartRepository.findAll();
     }
 
     @Override
-    public Cart updateCart(int bookId, int bookQuantity){
+    public Cart updateCart(int bookId, int bookQuantity) throws CartException {
         Cart cart = cartRepository.findById(bookId).get();
-        cart.setQuantity(bookQuantity);
-        return cartRepository.save(cart);
+        if (cartRepository.findById(bookId).isPresent()) {
+            cart.setQuantity(bookQuantity);
+            return cartRepository.save(cart);
+        } else throw new CartException(CartException.ExceptionType.BOOK_IS_NOT_AVAILABLE, "BOOK_IS_NOT_AVAILABLE");
     }
 
     @Override
-    public void removeBookFromCart(int bookId){
-        cartRepository.deleteById(bookId);
-
+    public void removeBookFromCart(int bookId) throws CartException {
+        if (cartRepository.findById(bookId).isPresent())
+            cartRepository.deleteById(bookId);
+        throw new CartException(CartException.ExceptionType.INVALID_BOOK_ID, "INVALID_BOOK_ID");
     }
 }
