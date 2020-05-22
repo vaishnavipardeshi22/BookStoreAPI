@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/cart")
 @RestController
+@RequestMapping("/cartController")
 public class CartController {
 
     @Autowired
