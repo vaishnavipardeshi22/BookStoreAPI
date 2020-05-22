@@ -16,7 +16,7 @@ import java.util.List;
 public class OnlineBookController {
 
     @Autowired
-    IBookService bookService;
+    private IBookService bookService;
 
     @GetMapping("/showBooks")
     public List<Book> getBooks() {

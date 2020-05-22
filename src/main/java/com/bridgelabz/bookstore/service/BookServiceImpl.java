@@ -12,7 +12,7 @@ import java.util.List;
 public class BookServiceImpl implements IBookService {
 
     @Autowired
-    public IBookRepository bookRepository;
+    private IBookRepository bookRepository;
 
     @Override
     public List<Book> getBookList() {

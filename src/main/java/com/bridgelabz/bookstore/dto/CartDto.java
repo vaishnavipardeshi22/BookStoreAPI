@@ -1,14 +1,13 @@
 package com.bridgelabz.bookstore.dto;
 
-
 public class CartDto {
     private String bookTitle;
-    private Long bookId;
+    private int bookId;
     private int bookQuantity;
     private double bookPrice;
 
 
-    public CartDto(Long bookId, int bookQuantity, double bookPrice) {
+    public CartDto(int bookId, int bookQuantity, double bookPrice) {
         this.bookId = bookId;
         this.bookQuantity = bookQuantity;
         this.bookPrice = bookPrice;
@@ -38,11 +37,11 @@ public class CartDto {
         this.bookPrice = bookPrice;
     }
 
-    public Long getBookId() {
+    public int getBookId() {
         return bookId;
     }
 
-    public void setBookId(Long bookId) {
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
 }

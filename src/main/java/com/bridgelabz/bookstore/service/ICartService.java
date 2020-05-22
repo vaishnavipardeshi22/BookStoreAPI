@@ -1,6 +1,7 @@
 package com.bridgelabz.bookstore.service;
 
 import com.bridgelabz.bookstore.dto.CartDto;
+import com.bridgelabz.bookstore.exception.CartException;
 import com.bridgelabz.bookstore.model.Cart;
 
 import java.util.List;
@@ -11,8 +12,8 @@ public interface ICartService {
 
     List<Cart> getListOfBooksInCart();
 
-    Cart updateCart(Long bookId, int bookQuantity);
+    Cart updateCart(int bookId, int bookQuantity) throws CartException;
 
-    void removeBookFromCart(Long bookId);
+    void removeBookFromCart(int bookId) throws CartException;
 
 }

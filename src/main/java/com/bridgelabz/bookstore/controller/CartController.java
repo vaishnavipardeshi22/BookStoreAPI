@@ -1,6 +1,7 @@
 package com.bridgelabz.bookstore.controller;
 
 import com.bridgelabz.bookstore.dto.CartDto;
+import com.bridgelabz.bookstore.exception.CartException;
 import com.bridgelabz.bookstore.model.Cart;
 import com.bridgelabz.bookstore.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +14,25 @@ import java.util.List;
 public class CartController {
 
     @Autowired
-    ICartService cartService;
+    private ICartService cartService;
 
     @PostMapping("/addToCart")
     public Cart addBookToCart(@RequestBody CartDto cartDto) {
         return cartService.addBookToCart(cartDto);
     }
 
-    @PutMapping("/updateBooksInCart")
-    public Cart updateCart(@PathVariable Long bookId, int quantity) {
+    @PutMapping("/updateBooksInCart/{bookId}")
+    public Cart updateCart(@PathVariable int bookId, int quantity) throws CartException {
         return cartService.updateCart(bookId, quantity);
     }
 
     @DeleteMapping("/deleteBookFromCart/{bookId}")
-    public void removeBookFromCart(@PathVariable Long bookId) {
+    public void removeBookFromCart(@PathVariable int bookId) throws CartException{
         cartService.removeBookFromCart(bookId);
     }
 
     @GetMapping("/getBooksInCart")
-    public List<Cart> getListOfBooksInCart() {
+    public List<Cart> getListOfBooksInCart(){
         return cartService.getListOfBooksInCart();
     }
 }

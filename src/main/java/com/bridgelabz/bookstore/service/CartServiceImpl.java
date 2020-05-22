@@ -1,6 +1,7 @@
 package com.bridgelabz.bookstore.service;
 
 import com.bridgelabz.bookstore.dto.CartDto;
+import com.bridgelabz.bookstore.exception.CartException;
 import com.bridgelabz.bookstore.model.Cart;
 import com.bridgelabz.bookstore.repository.ICartRepository;
 import org.modelmapper.ModelMapper;
@@ -13,10 +14,10 @@ import java.util.List;
 public class CartServiceImpl implements ICartService {
 
     @Autowired
-    ICartRepository cartRepository;
+    private ICartRepository cartRepository;
 
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @Override
     public Cart addBookToCart(CartDto cartDto) {
@@ -25,19 +26,19 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public List<Cart> getListOfBooksInCart() {
+    public List<Cart> getListOfBooksInCart(){
         return cartRepository.findAll();
     }
 
     @Override
-    public Cart updateCart(Long bookId, int bookQuantity) {
+    public Cart updateCart(int bookId, int bookQuantity){
         Cart cart = cartRepository.findById(bookId).get();
         cart.setQuantity(bookQuantity);
         return cartRepository.save(cart);
     }
 
     @Override
-    public void removeBookFromCart(Long bookId) {
+    public void removeBookFromCart(int bookId){
         cartRepository.deleteById(bookId);
 
     }
