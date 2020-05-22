@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstore.controller;
 
+import com.bridgelabz.bookstore.exception.BookStoreException;
 import com.bridgelabz.bookstore.model.Book;
 import com.bridgelabz.bookstore.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,12 @@ public class OnlineBookController {
     }
 
     @GetMapping("/searchByBookName/{title}")
-    public List<Book> searchByBookName(@PathVariable String title) {
+    public List<Book> searchByBookName(@PathVariable String title) throws BookStoreException {
         return bookService.searchByTitle(title);
     }
 
     @GetMapping("/searchByAuthorName/{author}")
-    public List<Book> searchByAuthorName(@PathVariable String author) {
+    public List<Book> searchByAuthorName(@PathVariable String author) throws BookStoreException {
         return bookService.searchByAuthor(author);
     }
 }
