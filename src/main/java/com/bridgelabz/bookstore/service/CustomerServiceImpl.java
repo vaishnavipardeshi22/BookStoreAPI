@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements ICustomerService{
     public void removeCustomer(int customerId) throws CustomerException {
         if (customerRepository.findById(customerId).isPresent())
             customerRepository.deleteById(customerId);
-        throw new CustomerException(CustomerException.ExceptionType.CUSTOMER_NOT_FOUND, "CUSTOMER_NOT_FOUND");
+        else throw new CustomerException(CustomerException.ExceptionType.CUSTOMER_NOT_FOUND, "CUSTOMER_NOT_FOUND");
     }
 
     @Override
