@@ -12,8 +12,9 @@ public interface ICartService {
 
     List<Cart> getListOfBooksInCart();
 
-    Cart updateCart(int bookId, int bookQuantity) throws CartException;
+    Cart updateCart(long bookId, long quantity) throws CartException;
 
-    void removeBookFromCart(int bookId) throws CartException;
+    void removeBookFromCart(long bookId) throws CartException;
 
+    void removeAllBooks();
 }

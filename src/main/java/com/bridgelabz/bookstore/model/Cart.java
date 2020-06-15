@@ -4,43 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-
 public class Cart {
+
     @Id
-    private int id;
-    private int quantity;
-    private double price;
-    private double amount;
+    private long bookId;
+    private long quantity;
 
-    public int getId() {
-        return id;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 }

@@ -11,29 +11,60 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cartController")
+@CrossOrigin(origins = "http://localhost:3000")
+
 public class CartController {
 
     @Autowired
     private ICartService cartService;
 
-    @PostMapping("/addToCart")
+    /**
+     *
+     * @param cartDto
+     * @return Add book to cart for purchase
+     */
+    @PostMapping
     public Cart addBookToCart(@RequestBody CartDto cartDto) {
         return cartService.addBookToCart(cartDto);
     }
 
-    @PutMapping("/updateBooksInCart/{bookId}")
+    /**
+     *
+     * @param bookId
+     * @param quantity
+     * @return Update quantity of book of particular book
+     * @throws CartException
+     */
+    @PutMapping("/{bookId}")
     public Cart updateCart(@PathVariable int bookId, int quantity) throws CartException {
         return cartService.updateCart(bookId, quantity);
     }
 
-    @DeleteMapping("/deleteBookFromCart/{bookId}")
+    /**
+     *
+     * @param bookId
+     * @throws CartException
+     */
+    @DeleteMapping("/deleteBook/{bookId}")
     public void removeBookFromCart(@PathVariable int bookId) throws CartException{
         cartService.removeBookFromCart(bookId);
     }
 
-    @GetMapping("/getBooksInCart")
+    /**
+     *
+     * @return Books List in the cart
+     */
+    @GetMapping
     public List<Cart> getListOfBooksInCart(){
         return cartService.getListOfBooksInCart();
+    }
+
+    /**
+     * Remove all books from cart
+     */
+    @DeleteMapping("/empty-cart")
+    public void removeAllBooks() {
+        cartService.removeAllBooks();
     }
 }
 
