@@ -6,6 +6,7 @@ import com.bridgelabz.bookstore.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -14,24 +15,54 @@ public class BookServiceImpl implements IBookService {
     @Autowired
     private IBookRepository bookRepository;
 
+    /**
+     * @return All book list with details
+     */
     @Override
     public List<Book> getBookList() {
         return bookRepository.findAll();
     }
 
+    /**
+     * @param id
+     * @return Book search by book id
+     */
     @Override
-    public List<Book> searchByTitle(String title) throws BookStoreException {
-        List<Book> bookListByTitle = bookRepository.findByTitle(title);
-        if (bookListByTitle.isEmpty())
-            throw new BookStoreException(BookStoreException.ExceptionType.BOOK_IS_NOT_AVAILABLE, "BOOK_IS_NOT_AVAILABLE");
-        return bookListByTitle;
+    public List<Book> getBookById(Long[] id) {
+        return bookRepository.findAllById(Arrays.asList(id));
     }
 
+    /**
+     * @param filter
+     * @return Book search by filter may be it will book author or book title
+     * @throws BookStoreException
+     */
     @Override
-    public List<Book> searchByAuthor(String author) throws BookStoreException {
-        List<Book> bookListOfAuthor = bookRepository.findByAuthor(author);
-        if (bookListOfAuthor.isEmpty())
+    public List<Book> getBookByFilter(String filter) throws BookStoreException {
+        List<Book> bookList = bookRepository.findByBookAuthorOrBookTitleContains(filter, filter);
+        if (bookList.isEmpty())
             throw new BookStoreException(BookStoreException.ExceptionType.BOOK_IS_NOT_AVAILABLE, "BOOK_IS_NOT_AVAILABLE");
-        return bookRepository.findByAuthor(author);
+        return bookList;
+    }
+
+    /**
+     * @param sort
+     * @return Book list by sorting it by book price or book quantity
+     */
+    @Override
+    public List<Book> getBookBySort(String sort) {
+        List<Book> bookList = null;
+        switch (sort) {
+            case "increasing":
+                bookList = bookRepository.findByOrderByBookPrice();
+                break;
+            case "decreasing":
+                bookList = bookRepository.findByOrderByBookPriceDesc();
+                break;
+            default:
+                bookList = bookRepository.findByOrderByBookQuantity();
+        }
+        return bookList;
     }
 }
+

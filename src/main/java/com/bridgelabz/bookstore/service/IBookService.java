@@ -8,8 +8,9 @@ import java.util.List;
 public interface IBookService {
     List<Book> getBookList();
 
-    List<Book> searchByTitle(String title) throws BookStoreException;
+    List<Book> getBookByFilter(String filter) throws BookStoreException;
 
-    List<Book> searchByAuthor(String author) throws BookStoreException;
+    List<Book> getBookById(Long[] id);
 
+    List<Book> getBookBySort(String sort);
 }

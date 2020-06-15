@@ -1,30 +1,13 @@
-package com.bridgelabz.bookstore.model;
+package com.bridgelabz.bookstore.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class BookDto {
 
-@Entity
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long bookId;
     private String bookAuthor;
     private String bookTitle;
     private String bookImage;
-    private int bookQuantity;
-    private double bookPrice;
+    private long bookQuantity;
+    private long bookPrice;
     private String bookDescription;
-
-    public long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(long bookId) {
-        this.bookId = bookId;
-    }
 
     public String getBookAuthor() {
         return bookAuthor;
@@ -50,19 +33,19 @@ public class Book {
         this.bookImage = bookImage;
     }
 
-    public int getBookQuantity() {
+    public long getBookQuantity() {
         return bookQuantity;
     }
 
-    public void setBookQuantity(int bookQuantity) {
+    public void setBookQuantity(long bookQuantity) {
         this.bookQuantity = bookQuantity;
     }
 
-    public double getBookPrice() {
+    public long getBookPrice() {
         return bookPrice;
     }
 
-    public void setBookPrice(double bookPrice) {
+    public void setBookPrice(long bookPrice) {
         this.bookPrice = bookPrice;
     }
 
