@@ -7,32 +7,53 @@ import com.bridgelabz.bookstore.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/customerController")
+@CrossOrigin(origins = "http://localhost:3000")
+
 public class CustomerController {
 
     @Autowired
     private ICustomerService customerService;
 
-    @PostMapping("/addCustomer")
+    /**
+     *
+     * @param customerDto
+     * @return Add customer details to the database
+     */
+    @PostMapping
     public Customer addCustomer(@RequestBody CustomerDto customerDto) {
         return customerService.addCustomer(customerDto);
     }
 
-    @PutMapping("/updateCustomerDetails/{customerId}")
-    public Customer updateCustomerDetails(@PathVariable int customerId, int orderQuantity) throws CustomerException {
-        return customerService.updateCustomer(customerId, orderQuantity);
+    /**
+     *
+     * @param customerId
+     * @param customerDto
+     * @return Update customer details of given customer id
+     * @throws CustomerException
+     */
+    @PutMapping("/{customerId}")
+    public Customer updateCustomerDetails(@PathVariable long customerId, @RequestBody CustomerDto customerDto) {
+        return customerService.updateCustomer(customerId, customerDto);
     }
 
-    @DeleteMapping("/removeCustomer/{customerId}")
-    public void removeCustomer(@PathVariable int customerId) throws CustomerException {
+    /**
+     *
+     * @param customerId
+     * @throws CustomerException
+     */
+    @DeleteMapping("/{customerId}")
+    public void removeCustomer(@PathVariable long customerId) throws CustomerException {
         customerService.removeCustomer(customerId);
     }
 
-    @GetMapping("/getCustomerList")
-    public List<Customer> getCustomerList() {
-        return customerService.getCustomerList();
+    /**
+     *
+     * @return Customer details of particular customer id
+     */
+    @GetMapping("/{id}")
+    public Customer getCustomer(@PathVariable long id) {
+        return customerService.getCustomer(id);
     }
 }

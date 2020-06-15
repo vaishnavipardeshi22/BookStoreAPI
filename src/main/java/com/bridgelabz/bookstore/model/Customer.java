@@ -1,103 +1,84 @@
 package com.bridgelabz.bookstore.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Customer {
 
     @Id
-    private int customerId;
-    private String customerName;
-    private double phoneNumber;
-    private int pinCode;
+    @GeneratedValue
+    private long id;
+    private String name;
+    private long pinCode;
     private String locality;
     private String address;
     private String city;
     private String landmark;
-    private String type;
-    private int orderQuantity;
+    private String addressType;
 
-    public Customer() {
+    public long getId() {
+        return id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public String getName() {
+        return name;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public int getPinCode() {
+    public long getPinCode() {
         return pinCode;
+    }
+
+    public void setPinCode(long pinCode) {
+        this.pinCode = pinCode;
     }
 
     public String getLocality() {
         return locality;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getLandmark() {
-        return landmark;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public void setPhoneNumber(double phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setPinCode(int pinCode) {
-        this.pinCode = pinCode;
-    }
-
     public void setLocality(String locality) {
         this.locality = locality;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public String getCity() {
+        return city;
+    }
+
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getLandmark() {
+        return landmark;
     }
 
     public void setLandmark(String landmark) {
         this.landmark = landmark;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getAddressType() {
+        return addressType;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setOrderQuantity(int orderQuantity) {
-        this.orderQuantity = orderQuantity;
-    }
-
-    public int getOrderQuantity() {
-        return orderQuantity;
+    public void setAddressType(String addressType) {
+        this.addressType = addressType;
     }
 }

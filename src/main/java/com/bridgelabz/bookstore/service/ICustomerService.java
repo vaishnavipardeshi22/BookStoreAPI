@@ -4,14 +4,12 @@ import com.bridgelabz.bookstore.dto.CustomerDto;
 import com.bridgelabz.bookstore.exception.CustomerException;
 import com.bridgelabz.bookstore.model.Customer;
 
-import java.util.List;
-
 public interface ICustomerService {
     Customer addCustomer(CustomerDto customerDto);
 
-    Customer updateCustomer(int customerId, int orderQuantity) throws CustomerException;
+    Customer updateCustomer(long customerId, CustomerDto orderQuantity);
 
-    void removeCustomer(int customerId) throws CustomerException;
+    void removeCustomer(long customerId) throws CustomerException;
 
-    List<Customer> getCustomerList();
+    Customer getCustomer(long customerId);
 }
