@@ -26,7 +26,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User registerUser(UserDto userDto) throws UserException {
         User user = modelMapper.map(userDto, User.class);
-        if (!userRepository.findByEmail(user.getEmail()).isPresent())
+        if (userRepository.findByEmail(user.getEmail()).isPresent())
             throw new UserException(UserException.ExceptionType.ALREADY_REGISTERED, "Email Id Already Registered");
         return userRepository.save(user);
     }

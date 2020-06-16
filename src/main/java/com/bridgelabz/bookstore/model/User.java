@@ -66,7 +66,7 @@ public class User {
     }
 
     public String getRoles() {
-        return roles;
+        return "user";
     }
 
     public void setRoles(String roles) {
